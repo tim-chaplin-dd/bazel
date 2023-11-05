@@ -1,5 +1,11 @@
 common --enable_platform_specific_config
 
+# Fix abseil-cpp with Xcode 15
+build:macos --cxxopt=-std=c++17
+build:macos --host_cxxopt=-std=c++17
+build:macos --cxxopt=-Wno-deprecated-builtins
+build:macos --host_cxxopt=-Wno-deprecated-builtins
+
 # Shared configuration flags to build and test Bazel on RBE.
 build:remote_shared --remote_instance_name=projects/bazel-untrusted/instances/default_instance
 build:remote_shared --remote_executor=grpcs://remotebuildexecution.googleapis.com
